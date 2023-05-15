@@ -1,21 +1,18 @@
-#include <unistd.h>
+#include "shell.h"
 
 /**
- * _putstr - writes the characters c to stdout
- * @c: The character to print
- *
- * Return: On success 1.
- * On error, -1 is returned, and errno is set appropriately.
+ * _putstr - writes strings
+ * @s: the string to print
+ * Return: 0
  */
-int _putstr(char *c)
-{   int i;
+int _putstr(char *s)
+{
+	int i;
 
-    for (i = 0; c[i] != '\0'; i++)
-    {
-        if (write(1, &c[i], 1) == -1)
-            return -1;
-       
-    }    
-    
+	for (i = 0; s[i] != '\0' ; i++)
+	{
+		if (write(1, &s[i], 1)
+				return (-1);
+	}
 	return (1);
 }
