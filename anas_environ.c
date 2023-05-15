@@ -13,8 +13,15 @@
  */
 char *_getenv(const char *name)
 {
-char **s = environ;
-for (; *s; s++)
-printf("%s\n", s[1]);
- return (NULL);
+unsigned int idx, cn;
+idx = 0;
+cn = _strlen(name);
+while (environ[idx] != NULL)
+{
+if (strn_comp(name, environ[idx], cn) == 0)
+return (environ[idx]);
+idx++;
 }
+return (NULL);
+}
+

@@ -11,10 +11,13 @@
 /* Global environemnt Variables */
 extern char **environ;
 int _putstr(char *c);
-int _strlen(char *s);
 void execute_cmd(char **argv);
 
 /* Helpers with anas_environ */
 char *_getenv(const char *name);
 
+/* String_helpers functions */
+int str_comp(char *st1, char *st2);
+int _strlen(const char *str_l);
+int strn_comp(const char *st1, const char *st2, size_t l);
 #endif
