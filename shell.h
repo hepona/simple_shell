@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 /* Global environemnt Variables */
 extern char **environ;
-int _putstr(char *c);
+int _putstr(char *s);
 void execute_cmd(char **argv);
 
 /* Helpers with anas_environ */
