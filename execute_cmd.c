@@ -9,17 +9,15 @@ void execute_cmd(char **argv)
 	char *cmd = NULL;
 	int pid = fork();
 
-	switch (pid)
-	case 0:
+	if (pid == 0)
+	{
 		if (argv != NULL)
 		{
 			cmd = argv[0];
 			if (execve(cmd, argv, NULL) == -1)
 				perror("Error");
 		}
-	case -1:
-		perror("Error");
-		exit(1);
-	default:
+	}
+	else
 		wait(NULL);
 }
