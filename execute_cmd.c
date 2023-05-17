@@ -22,8 +22,11 @@ void execute_cmd(char **argv)
  else if (pid == -1)
     {
         perror("Error");
-        exit (1);
+        exit (EXIT_FAILURE);
     }
-	else
+ else
+   {
 		wait(NULL);
+kill(pid, SIGKILL);
+   }
 }

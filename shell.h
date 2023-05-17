@@ -21,7 +21,8 @@ extern int stus;
 #define EXT_SHLL 5
 
 void execute_cmd(char **argv);
-
+void ext_shl(char **it);
+void fre_dip(char **it);
 /* Helpers with anas_environ */
 int _setenv(const char *name, const char *value, int overwrite);
 char *_getenv(const char *name);
@@ -35,6 +36,7 @@ char *_strchr(char *st, char c);
 char *str_concat(char *st1, char *st2);
 int strn_comp(const char *st1, const char *st2, size_t l);
 char *_strcpy(char *dest, char *src);
+int _atoi(char *s);
 int _putchar(char c);
 /* Array_helpers functions */
 int lst_idx(char **lst, char *val);

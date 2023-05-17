@@ -43,17 +43,34 @@ int main(__attribute__((unused)) int ac, char **argv)
 		}
 		arg[i] = NULL;
 if (str_comp(arg[0], "exit") == 0) 
-return (EXT_SHLL);
+  ext_shl(arg);
 if (str_comp(arg[0], "env") == 0)
 _printenv();
 else   
      execute_cmd(arg);
 		free(cmd_cp);
 		free(arg);
-		printf("exit");
 	}
 	
 	free(cmd);
 	return (0);
 }
 
+/**
+ * ext_shl - Chck
+ * @it: input
+ * Return: Nothing.
+ */
+void ext_shl(char **it)
+{
+    int sts = 0;
+
+if (it[1] == NULL)
+{
+    fre_dip(it);
+exit(EXIT_SUCCESS);
+}
+sts= _atoi(it[1]);
+fre_dip(it);
+exit(sts);
+}
