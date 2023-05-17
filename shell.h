@@ -18,7 +18,7 @@ extern int stus;
 #define FALSE 0
 #define TRUE 1
 #define SKP_FRK 6
-
+#define EXT_SHLL 5
 
 void execute_cmd(char **argv);
 
@@ -26,6 +26,7 @@ void execute_cmd(char **argv);
 int _setenv(const char *name, const char *value, int overwrite);
 char *_getenv(const char *name);
 int _printenv(void);
+
 /* String_helpers functions */
 int str_comp(char *st1, char *st2);
 int _putstr(char *c);
