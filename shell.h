@@ -34,7 +34,7 @@ char *_strchr(char *st, char c);
 char *str_concat(char *st1, char *st2);
 int strn_comp(const char *st1, const char *st2, size_t l);
 char *_strcpy(char *dest, char *src);
-
+int _putchar(char c);
 /* Array_helpers functions */
 int lst_idx(char **lst, char *val);
 #endif

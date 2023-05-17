@@ -43,10 +43,8 @@ int main(__attribute__((unused)) int ac, char **argv)
 		}
 		arg[i] = NULL;
 if (str_comp(arg[0], "exit") == 0) 
-            extshll = 1;
-        
- else
-   
+exit(EXIT_FAILURE);
+ else   
      execute_cmd(arg);
 		free(cmd_cp);
 		free(arg);
