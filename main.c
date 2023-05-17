@@ -13,7 +13,7 @@ int main(__attribute__((unused)) int ac, char **argv)
 	ssize_t cmdread;
 	char *token,  **arg;
 	int i, c_tok = 0;
-
+	(void)argv;
 	while (1)
 	{
 		_putstr("($) > ");

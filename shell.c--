@@ -4,7 +4,7 @@
  * @a_v: An array of pointers to the arguments.
  * Return: Always 0.
  */
-int main(int a_c, char *a_v[])
+int main(__attribute__((unused)) int a_c, char *a_v[])
 {
 return (0);
 }

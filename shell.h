@@ -9,8 +9,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
-/* Global environemnt Variables */
+/* Global Variables */
 extern char **environ;
+extern int stus;
+
 /* Fixed Var */
 #define PFX 4
 #define FALSE 0

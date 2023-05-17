@@ -8,7 +8,7 @@ void execute_cmd(char **argv)
 {
 	char *cmd = NULL;
 	int pid = fork();
-	printf("anas");
+
 	if (pid == 0)
 	{
 		if (argv != NULL)
