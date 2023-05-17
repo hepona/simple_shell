@@ -13,8 +13,9 @@ int main(__attribute__((unused)) int ac, char **argv)
 	ssize_t cmdread;
 	char *token,  **arg;
 	int i, c_tok = 0;
+	int extshll = 0;
 	(void)argv;
-	while (1)
+	while (!extshll)
 	{
 		_putstr("($) > ");
 		cmdread = getline(&cmd, &bufsize, stdin);
@@ -41,8 +42,12 @@ int main(__attribute__((unused)) int ac, char **argv)
 			token = strtok(NULL, " \n");
 		}
 		arg[i] = NULL;
-
-		execute_cmd(arg);
+if (str_comp(arg[0], "exit") == 0) 
+            extshll = 1;
+        
+ else
+   
+     execute_cmd(arg);
 		free(cmd_cp);
 		free(arg);
 	}

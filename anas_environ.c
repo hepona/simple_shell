@@ -38,6 +38,7 @@ unsigned int i, cn;
 char *el;
 char *bffr;
 char *bffrtp;
+ (void)i;
 cn = _strlen(name);
 bffr = str_concat((char *)name, "=");
 bffrtp = str_concat(bffr, (char *)value);
@@ -50,7 +51,7 @@ if (!overwrite)
 return (0);
 }
 cn = lst_idx(environ, (char *)name);
-// free(environ[cn]);
+free(environ[cn]);
 printf("env %s\n", el);
 environ[cn] = bffr;
 return (SKP_FRK);

@@ -9,10 +9,6 @@ void execute_cmd(char **argv)
 	char *cmd = NULL;
 	int pid = fork();
 
-        if (str_comp(argv[0], "exit") == 0) {
-            printf("Exiting the shell.\n");
-exit(1);
-        }
 	if (pid == 0)
 	{
 		if (argv != NULL)
