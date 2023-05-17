@@ -25,7 +25,7 @@ void execute_cmd(char **argv);
 /* Helpers with anas_environ */
 int _setenv(const char *name, const char *value, int overwrite);
 char *_getenv(const char *name);
-
+int _printenv(void);
 /* String_helpers functions */
 int str_comp(char *st1, char *st2);
 int _putstr(char *c);

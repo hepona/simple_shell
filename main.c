@@ -44,7 +44,9 @@ int main(__attribute__((unused)) int ac, char **argv)
 		arg[i] = NULL;
 if (str_comp(arg[0], "exit") == 0) 
 exit(EXIT_FAILURE);
- else   
+if (str_comp(command, "exit") == 0)
+
+else   
      execute_cmd(arg);
 		free(cmd_cp);
 		free(arg);

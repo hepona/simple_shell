@@ -56,3 +56,26 @@ printf("env %s\n", el);
 environ[cn] = bffr;
 return (SKP_FRK);
 }
+/**
+ * _printenv - print environment
+ * Return: 0 if success
+ */
+int _printenv(void)
+{
+int i;
+int j;
+
+i = 0;
+while (environ[i])
+{
+j = 0;
+while (environ[i][j] != 0)
+{
+_putchar(environ[i][j]);
+j++;
+}
+_putchar('\n');
+i++;
+}
+return (0);
+}
