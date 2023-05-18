@@ -6,15 +6,14 @@
  * @ac: num of arguments
  * Return: 0
  */
-int main(__attribute__((unused)) int ac, char **argv)
+int main(int ac, char **argv)
 {
 	char *cmd = NULL, *cmd_cp = NULL;
 	size_t bufsize = 0;
 	ssize_t cmdread;
-	char *token,  **arg;
-	int i, c_tok = 0;
-	int extshll = 0;
-	(void)argv;
+	char *token, *exe_name = argv[0];
+	int c_tok = 0, extshll = 0;
+
 	while (!extshll)
 	{
 		_putstr("($) > ");
@@ -33,25 +32,23 @@ int main(__attribute__((unused)) int ac, char **argv)
 			token = strtok(NULL, " \n");
 		}
 		c_tok++;
-		arg = malloc(sizeof(char *) * c_tok);
+		argv = malloc(sizeof(char *) * c_tok);
 		token = strtok(cmd_cp, " \n");
-		for (i = 0; token != NULL; i++)
+		for (ac = 0; token != NULL; ac++)
 		{
-			arg[i] = malloc(sizeof(char) * _strlen(token));
-			_strcpy(arg[i], token);
+			argv[ac] = malloc(sizeof(char) * _strlen(token));
+			_strcpy(argv[ac], token);
 			token = strtok(NULL, " \n");
 		}
-		arg[i] = NULL;
-if (str_comp(arg[0], "exit") == 0) 
-  ext_shl(arg);
-if (str_comp(arg[0], "env") == 0)
-_printenv();
-else   
-     execute_cmd(arg);
-		free(cmd_cp);
-		free(arg);
+		argv[ac] = NULL;
+		if (str_comp(argv[0], "exit") == 0)
+		ext_shl(argv);
+		if (str_comp(argv[0], "env") == 0)
+		_printenv();
+		else
+		execute_cmd(argv, exe_name);
 	}
-	
+	free(cmd_cp);
 	free(cmd);
 	return (0);
 }
@@ -68,9 +65,9 @@ void ext_shl(char **it)
 if (it[1] == NULL)
 {
     fre_dip(it);
-exit(EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
-sts= _atoi(it[1]);
+sts = _atoi(it[1]);
 fre_dip(it);
 exit(sts);
 }

@@ -20,7 +20,7 @@ extern int stus;
 #define SKP_FRK 6
 #define EXT_SHLL 5
 
-void execute_cmd(char **argv);
+void execute_cmd(char **argv, char *filename);
 void ext_shl(char **it);
 void fre_dip(char **it);
 /* Helpers with anas_environ */
