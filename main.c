@@ -18,10 +18,12 @@ int main(int ac, char **argv)
 	{
 		_putstr("($) > ");
 		cmdread = getline(&cmd, &bufsize, stdin);
-		cmd_cp = malloc(sizeof(char *)  * cmdread + 1);
+		if (cmdread == -1)
+			break;
+		cmd_cp = malloc(sizeof(char)  * (cmdread + 1));
 		if (cmd_cp == NULL)
 		{
-			perror("Error: malloc");
+			perror("");
 			return (-1);
 		}
 		_strcpy(cmd_cp, cmd);
@@ -31,19 +33,18 @@ int main(int ac, char **argv)
 			c_tok++;
 			token = strtok(NULL, " \n");
 		}
-		c_tok++;
-		argv = malloc(sizeof(char *) * c_tok);
+		argv = malloc(sizeof(char *) * (c_tok + 1));
 		token = strtok(cmd_cp, " \n");
 		for (ac = 0; token != NULL; ac++)
 		{
-			argv[ac] = malloc(sizeof(char) * _strlen(token));
+			argv[ac] = malloc(sizeof(char) * (_strlen(token) + 1));
 			_strcpy(argv[ac], token);
 			token = strtok(NULL, " \n");
 		}
 		argv[ac] = NULL;
 		if (str_comp(argv[0], "exit") == 0)
 		ext_shl(argv);
-		if (str_comp(argv[0], "env") == 0)
+		else if (str_comp(argv[0], "env") == 0)
 		_printenv();
 		else
 		execute_cmd(argv, exe_name);
@@ -60,14 +61,14 @@ int main(int ac, char **argv)
  */
 void ext_shl(char **it)
 {
-    int sts = 0;
+	int sts = 0;
 
-if (it[1] == NULL)
-{
-    fre_dip(it);
-	exit(EXIT_SUCCESS);
-}
-sts = _atoi(it[1]);
-fre_dip(it);
-exit(sts);
+	if (it[1] == NULL)
+	{
+		fre_dip(it);
+		exit(EXIT_SUCCESS);
+	}
+	sts = _atoi(it[1]);
+	fre_dip(it);
+	exit(sts);
 }
