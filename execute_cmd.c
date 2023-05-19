@@ -15,6 +15,7 @@ void execute_cmd(char **argv, char *filename)
 			cmd = argv[0];
 			if (execve(cmd, argv, NULL) == -1)
 				perror(filename);
+			 exit(EXIT_FAILURE);
 	}
 	else if (pid == -1)
 	{
