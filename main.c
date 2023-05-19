@@ -23,7 +23,7 @@ int main(int ac, char **argv)
 		cmd_cp = malloc(sizeof(char)  * (cmdread + 1));
 		if (cmd_cp == NULL)
 		{
-			perror("");
+			perror("malloc");
 			return (-1);
 		}
 		_strcpy(cmd_cp, cmd);

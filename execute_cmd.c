@@ -12,21 +12,18 @@ void execute_cmd(char **argv, char *filename)
 
 	if (pid == 0)
 	{
-		if (argv != NULL)
-		{
 			cmd = argv[0];
 			if (execve(cmd, argv, NULL) == -1)
 				perror(filename);
-		}
 	}
 	else if (pid == -1)
 	{
 		perror("Error");
 		exit(EXIT_FAILURE);
-		}
-		else
-		{
-			wait(NULL);
-			kill(pid, SIGKILL);
-			}
+	}
+	else
+	{
+		wait(NULL);
+		kill(pid, SIGKILL);
+	}
 }
