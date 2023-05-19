@@ -12,7 +12,7 @@ void execute_cmd(char **argv, char *filename)
 
 	if (pid == 0)
 	{
-			cmd = argv[0];
+	  cmd =str_concat("/bin/", argv[0]);
 			if (execve(cmd, argv, NULL) == -1)
 				perror(filename);
 			 exit(EXIT_FAILURE);
