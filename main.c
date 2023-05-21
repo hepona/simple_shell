@@ -27,13 +27,8 @@ int main(int ac, char **argv)
 			return (-1);
 		}
 		_strcpy(cmd_cp, cmd);
-		token = strtok(cmd, " \n");
-		while (token != NULL)
-		{
-			c_tok++;
-			token = strtok(NULL, " \n");
-		}
-		argv = malloc(sizeof(char *) * (c_tok + 1));
+		c_tok = tokenize(cmd, " \n");
+		argv = malloc(sizeof(char *) * c_tok);
 		token = strtok(cmd_cp, " \n");
 		for (ac = 0; token != NULL; ac++)
 		{
@@ -48,8 +43,9 @@ int main(int ac, char **argv)
 		_printenv();
 		else
 		execute_cmd(argv, exe_name);
-	}
 	free(cmd_cp);
+	fre_dip(argv);
+	}
 	free(cmd);
 	return (0);
 }
