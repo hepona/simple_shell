@@ -19,7 +19,9 @@ void execute_cmd(char **argv, char *filename)
 	pid = fork();
 	if (pid == 0)
 	{
-		if (execve(cmd, argv, NULL) == -1)
+		if (argv == NULL)
+			return;
+		if (execve(cmd, argv, NULL) == -1 && cmd == "")
 		{
 			perror(filename);
 			exit(EXIT_FAILURE);

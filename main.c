@@ -20,7 +20,7 @@ int main(int ac, char **argv)
 		cmdread = getline(&cmd, &bufsize, stdin);
 		if (cmdread == -1)
 			break;
-		cmd_cp = malloc(sizeof(char)  * (cmdread + 1));
+		cmd_cp = malloc(sizeof(char)  * cmdread);
 		if (cmd_cp == NULL)
 		{
 			perror("malloc");
@@ -37,11 +37,11 @@ int main(int ac, char **argv)
 			token = strtok(NULL, " \n");
 		}
 		argv[ac] = NULL;
-		if (str_comp(argv[0], "exit") == 0)
-		ext_shl(argv);
-		else if (str_comp(argv[0], "env") == 0)
-		_printenv();
-		else
+		// if (strcmp(argv[0], "exit") == 0)
+		// ext_shl(argv);
+		// else if (strcmp(argv[0], "env") == 0)
+		// _printenv();
+		// else
 		execute_cmd(argv, exe_name);
 	free(cmd_cp);
 	fre_dip(argv);
