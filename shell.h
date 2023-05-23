@@ -10,19 +10,6 @@
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-/**
- * struct list_s - singly linked list
- * @str: string
- * @next: points to the next node
- *
- * Description: singly linked list node structure
- */
-typedef struct list_s
-{
-	char *str;
-	struct list_s *next;
-} list_path;
-
 /* Global Variables */
 extern char **environ;
 extern int stus;
@@ -54,7 +41,6 @@ char *_strcpy(char *dest, char *src);
 int _atoi(char *s);
 int _putchar(char c);
 int tokenize(char *str, char *delimiter);
-void free_list(list_path *head);
 char *_strdup(char *str);
 /* Array_helpers functions */
 int lst_idx(char **lst, char *val);
