@@ -37,11 +37,11 @@ int main(int ac, char **argv)
 			token = strtok(NULL, sep);
 		}
 		argv[ac] = NULL;
-		/*if (strcmp(argv[0], "exit") == 0)
+		if (strcmp(argv[0], "exit") == 0)
 		ext_shl(argv);
 		if (strcmp(argv[0] == "env") == 0)
 		_printenv();
-		else*/
+		else
 		execute_cmd(argv, exe_name);
 	}
 	free(cmd_cp);
