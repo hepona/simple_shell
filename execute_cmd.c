@@ -9,13 +9,15 @@ void execute_cmd(char **argv, char *filename)
 {
 	char *cmd = NULL;
 	int pid = fork();
-
 	if (pid == 0)
 	{
-	                cmd =str_concat("/bin/", argv[0]);
-			if (execve(cmd, argv, NULL) == -1)
-				perror(filename);
-			 exit(EXIT_FAILURE);
+	  if(check_fll_path(argv[0]))
+	  cmd=argv[0];
+	  else
+	   cmd =str_concat("/bin/", argv[0]);
+	  if (execve(cmd, argv, NULL) == -1)
+	   perror(filename);
+	  exit(EXIT_FAILURE);
 	}
 	else if (pid == -1)
 	{

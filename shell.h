@@ -29,7 +29,7 @@ void fre_dip(char **it);
 int _setenv(const char *name, const char *value, int overwrite);
 char *_getenv(const char *name);
 int _printenv(void);
-
+int check_fll_path(const char *cmd);
 /* String_helpers functions */
 int str_comp(char *st1, char *st2);
 int _putstr(char *c);

@@ -40,3 +40,13 @@ char *file_path(char *cmd)
         free(path_cp);
     return (cmd);
 }
+/**
+ * check_fll_path -> chck path
+ * @cmd: command entered by user
+ * Return O or 1
+ */
+int check_fll_path(const char *cmd) {
+    if (access(cmd, X_OK) == 0) 
+        return 1; 
+    return 0;
+}
