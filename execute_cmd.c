@@ -11,19 +11,6 @@ void execute_cmd(char **argv, char *filename)
 	char *cmd_vr = file_path(cmd);
 	int pid = 0;
 
-	// if (cmd_vr == NULL)
-    // {
-    //     printf("Command not found: %s\n", cmd);
-    //     return;
-    // }
-	//     printf("Executing command: %s\n", cmd_vr);
-
-	// if (cmd_vr == NULL)
-	// {
-	// 	printf("cmd_vr  = %s\n", cmd_vr);
-	// 	return;
-	// }
-	
 	if (access(cmd_vr, X_OK) == -1)
 	{
 		perror(filename);
@@ -47,6 +34,8 @@ void execute_cmd(char **argv, char *filename)
 	else
 	{
 		wait(NULL);
-		// kill(pid, SIGKILL);
+		/*
+		* kill(pid, SIGKILL);
+		*/
 	}
 }
