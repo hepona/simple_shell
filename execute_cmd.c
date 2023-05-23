@@ -7,24 +7,36 @@
  */
 void execute_cmd(char **argv, char *filename)
 {
-	char *cmd = str_concat("/bin/", argv[0]);
+	char *cmd = argv[0];
+	char *cmd_vr = file_path(cmd);
 	int pid = 0;
-	char *path = _getenv("PATH");
 
-	if (access(cmd, X_OK))
+	// if (cmd_vr == NULL)
+    // {
+    //     printf("Command not found: %s\n", cmd);
+    //     return;
+    // }
+	//     printf("Executing command: %s\n", cmd_vr);
+
+	// if (cmd_vr == NULL)
+	// {
+	// 	printf("cmd_vr  = %s\n", cmd_vr);
+	// 	return;
+	// }
+	
+	if (access(cmd_vr, X_OK) == -1)
 	{
 		perror(filename);
 		return;
 	}
 	pid = fork();
+
 	if (pid == 0)
 	{
-		if (argv == NULL)
-			return;
-		if (execve(cmd, argv, NULL) == -1 && cmd == "")
+		if (argv != NULL)
 		{
-			perror(filename);
-			exit(EXIT_FAILURE);
+			if (execve(cmd_vr, argv, NULL) == -1)
+				perror(filename);
 		}
 	}
 	else if (pid == -1)
@@ -35,6 +47,6 @@ void execute_cmd(char **argv, char *filename)
 	else
 	{
 		wait(NULL);
-		kill(pid, SIGKILL);
+		// kill(pid, SIGKILL);
 	}
 }
