@@ -38,7 +38,7 @@ int main(int ac, char **argv)
 		}
 		argv[ac] = NULL;
 		if (str_comp(argv[0], "exit") == 0)
-		ext_shl(argv);
+		  ext_shl(argv);
 		if (str_comp(argv[0], "env") == 0)
 		_printenv();
 		else
