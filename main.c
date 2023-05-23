@@ -11,7 +11,7 @@ int main(int ac, char **argv)
 	char *cmd = NULL, *cmd_cp = NULL;
 	size_t bufsize = 0;
 	ssize_t cmdread;
-	char *token, *exe_name = argv[0];
+	char *token, *exe_name = argv[0], *sep = " \n";
 	int c_tok = 0, extshll = 0;
 
 	while (!extshll)
@@ -27,25 +27,24 @@ int main(int ac, char **argv)
 			return (-1);
 		}
 		_strcpy(cmd_cp, cmd);
-		c_tok = tokenize(cmd, " \n");
+		c_tok = tokenize(cmd, sep);
 		argv = malloc(sizeof(char *) * c_tok);
-		token = strtok(cmd_cp, " \n");
+		token = strtok(cmd_cp, sep);
 		for (ac = 0; token != NULL; ac++)
 		{
 			argv[ac] = malloc(sizeof(char) * (_strlen(token) + 1));
 			_strcpy(argv[ac], token);
-			token = strtok(NULL, " \n");
+			token = strtok(NULL, sep);
 		}
 		argv[ac] = NULL;
-		// if (strcmp(argv[0], "exit") == 0)
-		// ext_shl(argv);
-		// else if (strcmp(argv[0], "env") == 0)
-		// _printenv();
-		// else
+		/*if (strcmp(argv[0], "exit") == 0)
+		ext_shl(argv);
+		if (strcmp(argv[0] == "env") == 0)
+		_printenv();
+		else*/
 		execute_cmd(argv, exe_name);
-	free(cmd_cp);
-	fre_dip(argv);
 	}
+	free(cmd_cp);
 	free(cmd);
 	return (0);
 }
