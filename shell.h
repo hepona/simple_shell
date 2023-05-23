@@ -8,6 +8,8 @@
 #include <string.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 /**
  * struct list_s - singly linked list
  * @str: string
@@ -33,6 +35,7 @@ extern int stus;
 #define EXT_SHLL 5
 
 void execute_cmd(char **argv, char *filename);
+char *file_path(char *cmd);
 void ext_shl(char **it);
 void fre_dip(char **it);
 /* Helpers with anas_environ */
@@ -52,6 +55,7 @@ int _atoi(char *s);
 int _putchar(char c);
 int tokenize(char *str, char *delimiter);
 void free_list(list_path *head);
+char *_strdup(char *str);
 /* Array_helpers functions */
 int lst_idx(char **lst, char *val);
 #endif
