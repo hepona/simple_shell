@@ -12,7 +12,7 @@ int main(int ac, char **argv)
 	size_t bufsize = 0;
 	ssize_t cmdread;
 	char *token, *exe_name = argv[0], *sep = " \n";
-	int c_tok = 0, extshll = 0;
+	int extshll = 0;
 
 	while (!extshll)
 	{
@@ -29,9 +29,7 @@ int main(int ac, char **argv)
 			perror("malloc");
 			return (-1);
 		}
-		_strcpy(cmd_cp, cmd);
-		c_tok = tokenize(cmd, sep);
-		token = strtok(cmd_cp, sep);
+		_strcpy(cmd_cp, cmd);		token = strtok(cmd_cp, sep);
 		for (ac = 0; token != NULL; ac++)
 		{
 			argv[ac] = malloc(sizeof(char) * (_strlen(token) + 1));
