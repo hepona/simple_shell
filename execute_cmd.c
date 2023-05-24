@@ -8,14 +8,18 @@
 void execute_cmd(char **argv, char *filename)
 {
 	char *cmd = argv[0];
-	char *cmd_vr = file_path(cmd);
-	int pid = 0;
+	char *cmd_vr = file_path(cmd), error_msg[50];;
+	int pid, len;
 
 	if (access(cmd_vr, X_OK) == -1)
 	{
-		char error_msg[50];
-        int len = snprintf(error_msg, sizeof(error_msg), "/bin/sh: 1: %s: not found\n", cmd);
-        write(STDERR_FILENO, error_msg, len);
+		if (!isatty(STDIN_FILENO))
+		{
+			len = snprintf(error_msg, sizeof(error_msg), "/bin/sh: 1: %s: not found\n", cmd);
+			write(STDERR_FILENO, error_msg, len);
+		}
+		else
+			perror(filename);
 		return;
 	}
 	pid = fork();
@@ -27,10 +31,15 @@ void execute_cmd(char **argv, char *filename)
 			_putstr("");
 			return;
 		}
-		if (argv != NULL)
+		if (str_comp(argv[0], "env") == 0)
+		_printenv();
+		else
 		{
-			if (execve(cmd_vr, argv, NULL) == -1)
+			if (argv != NULL)
+			{
+				if (execve(cmd_vr, argv, NULL) == -1)
 				perror(filename);
+			}
 		}
 	}
 	else if (pid == -1)
