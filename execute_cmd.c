@@ -8,8 +8,8 @@
 void execute_cmd(char **argv, char *filename)
 {
 	char *cmd = argv[0];
-	char *cmd_vr = file_path(cmd), error_msg[50];
-	int pid, len;
+	char *cmd_vr = file_path(cmd);
+	int pid;
 
 	if (access(cmd_vr, X_OK) == -1)
 	{
