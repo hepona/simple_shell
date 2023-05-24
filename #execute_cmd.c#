@@ -1,4 +1,4 @@
-#include "shell.h"
+0;10;1c#include "shell.h"
 
 /**
  * execute_cmd -> execute command from user
@@ -24,15 +24,13 @@ int execute_cmd(char **argv, char *filename)
 			_putstr("");
 			return (0);
 		}
-		if (str_comp(argv[0], "exit") == 0)
-		ext_shl(argv);
-		else if (str_comp(argv[0], "env") == 0)
+		if (str_comp(argv[0], "env") == 0)
 		_printenv();
 		else
 		{
 				if (execve(cmd_vr, argv, NULL) == -1)
 				perror(filename);
-				return (0);
+				exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid == -1)
