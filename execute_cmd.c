@@ -4,6 +4,7 @@
  * execute_cmd -> execute command from user
  * @argv: command entered by user
  * @filename: name of the executed file
+ * Return: 0 or 1
  */
 int execute_cmd(char **argv, char *filename)
 {
@@ -24,21 +25,19 @@ int execute_cmd(char **argv, char *filename)
 			_putstr("");
 			return (0);
 		}
-		if (str_comp(argv[0], "exit") == 0)
-		ext_shl(argv);
-		else if (str_comp(argv[0], "env") == 0)
+		if (str_comp(argv[0], "env") == 0)
 		_printenv();
 		else
 		{
 				if (execve(cmd_vr, argv, NULL) == -1)
 				perror(filename);
-				return (0);
+				exit(EXIT_FAILURE);
 		}
 	}
 	else if (pid == -1)
 	{
 		perror("pid");
-		return (0);
+		exit(EXIT_FAILURE);
 	}
 	else
 	{
