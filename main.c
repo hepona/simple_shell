@@ -31,7 +31,6 @@ int main(int ac, char **argv)
 		}
 		_strcpy(cmd_cp, cmd);
 		c_tok = tokenize(cmd, sep);
-		// argv = malloc(sizeof(char *) * c_tok);
 		token = strtok(cmd_cp, sep);
 		for (ac = 0; token != NULL; ac++)
 		{
