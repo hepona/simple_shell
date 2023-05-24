@@ -19,7 +19,10 @@ int main(int ac, char **argv)
 		_putstr("($) > ");
 		cmdread = getline(&cmd, &bufsize, stdin);
 		if (cmdread == -1)
+		{
 			break;
+			exit(EXIT_FAILURE);
+		}
 		cmd_cp = malloc(sizeof(char)  * cmdread);
 		if (cmd_cp == NULL)
 		{
@@ -28,7 +31,7 @@ int main(int ac, char **argv)
 		}
 		_strcpy(cmd_cp, cmd);
 		c_tok = tokenize(cmd, sep);
-		argv = malloc(sizeof(char *) * c_tok);
+		// argv = malloc(sizeof(char *) * c_tok);
 		token = strtok(cmd_cp, sep);
 		for (ac = 0; token != NULL; ac++)
 		{
