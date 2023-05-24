@@ -38,7 +38,7 @@ unsigned int i, cn;
 char *el;
 char *bffr;
 char *bffrtp;
- (void)i;
+(void)i;
 cn = _strlen(name);
 bffr = str_concat((char *)name, "=");
 bffrtp = str_concat(bffr, (char *)value);

@@ -13,17 +13,10 @@ void execute_cmd(char **argv, char *filename)
 
 	if (access(cmd_vr, X_OK) == -1)
 	{
-		if (!isatty(STDIN_FILENO))
-		{
-			len = snprintf(error_msg, sizeof(error_msg), "/bin/sh: 1: %s: not found\n", cmd);
-			write(STDERR_FILENO, error_msg, len);
-		}
-		else
-			perror(filename);
+		_isatty(cmd, filename);
 		return;
 	}
 	pid = fork();
-
 	if (pid == 0)
 	{
 		if (cmd == NULL)
@@ -35,16 +28,13 @@ void execute_cmd(char **argv, char *filename)
 		_printenv();
 		else
 		{
-			if (argv != NULL)
-			{
 				if (execve(cmd_vr, argv, NULL) == -1)
 				perror(filename);
-			}
 		}
 	}
 	else if (pid == -1)
 	{
-		perror("Error");
+		perror("pid");
 		exit(EXIT_FAILURE);
 	}
 	else

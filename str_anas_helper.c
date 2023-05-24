@@ -76,7 +76,8 @@ return (0);
  * @st: The string to be searched.
  * @c: The character to be check.
  *
- * Return: a pointer to the first occurence if c was found otherwise return Null.
+ * Return: a pointer to the first occurence
+ * if c was found otherwise return Null.
  */
 char *_strchr(char *st, char c)
 {
@@ -89,47 +90,6 @@ return (st + cn);
 }
 return (NULL);
 }
-/**
- * strn_comp - Compares two strings.
- * @st1: string
- * @st2: string
- * @l: first n bytes of the strings to compare.
- * Return:Length of the string
- */
-int strn_comp(const char *st1, const char *st2, size_t l)
-{
-size_t i;
-for (i = 0; st1[i] && st2[i] && i < l; i++)
-{
-if (st1[i] > st2[i])
-return (st1[i] - st2[i]);
-else if (st1[i] < st2[i])
-return (st1[i] - st2[i]);
-}
-if (i == l)
-return (0);
-else
-return (-15);
-}
-
-/**
- * _strcpy -> copy the string pointed to by src
- * @dest: a character
- * @src: a character
- * Return: value of dest
- */
-char *_strcpy(char *dest, char *src)
-{
-        int i;
-        int l = strlen(src);
-
-        for (i = 0 ; i < l ; i++)
-                dest[i] = src[i];
-        dest[l] = '\0';
-
-        return (dest);
-}
-
 /**
  * _putchar - writes the character c to stdout
  * @c: The character to print

@@ -31,6 +31,7 @@ char *_getenv(const char *name);
 int _printenv(void);
 int check_fll_path(const char *cmd);
 /* String_helpers functions */
+void free_argv(char **av);
 int str_comp(char *st1, char *st2);
 int _putstr(char *c);
 int _strlen(const char *str_l);
@@ -44,4 +45,5 @@ int tokenize(char *str, char *delimiter);
 char *_strdup(char *str);
 /* Array_helpers functions */
 int lst_idx(char **lst, char *val);
+int _isatty(char *cmd, char *filename);
 #endif
