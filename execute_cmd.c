@@ -5,7 +5,7 @@
  * @argv: command entered by user
  * @filename: name of the executed file
  */
-void execute_cmd(char **argv, char *filename)
+int execute_cmd(char **argv, char *filename)
 {
 	char *cmd = argv[0];
 	char *cmd_vr = file_path(cmd);
@@ -14,7 +14,7 @@ void execute_cmd(char **argv, char *filename)
 	if (access(cmd_vr, X_OK) == -1)
 	{
 		_isatty(cmd, filename);
-		return;
+		return (0);
 	}
 	pid = fork();
 	if (pid == 0)
@@ -22,7 +22,7 @@ void execute_cmd(char **argv, char *filename)
 		if (cmd == NULL)
 		{
 			_putstr("");
-			return;
+			return (0);
 		}
 		if (str_comp(argv[0], "env") == 0)
 		_printenv();
@@ -35,11 +35,12 @@ void execute_cmd(char **argv, char *filename)
 	else if (pid == -1)
 	{
 		perror("pid");
-		exit(EXIT_FAILURE);
+		return (0);
 	}
 	else
 	{
 		wait(NULL);
 		kill(pid, SIGKILL);
 	}
+	return (1);
 }

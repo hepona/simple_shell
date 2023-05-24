@@ -12,9 +12,9 @@ int main(int ac, char **argv)
 	size_t bufsize = 0;
 	ssize_t cmdread;
 	char *token, *exe_name = argv[0], *sep = " \n";
-	int c_tok = 0, extshll = 0;
+	int c_tok = 0, extshll = 1;
 
-	while (!extshll)
+	while (extshll)
 	{
 		if (isatty(STDIN_FILENO))
 			write(STDOUT_FILENO, "($) > ", 6);
@@ -38,7 +38,7 @@ int main(int ac, char **argv)
 			token = strtok(NULL, sep);
 		}
 		argv[ac] = NULL;
-		execute_cmd(argv, exe_name);
+		extshll = execute_cmd(argv, exe_name);
 	}
 	free(cmd_cp);
 	free(cmd);

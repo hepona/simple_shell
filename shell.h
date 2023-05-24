@@ -21,7 +21,7 @@ extern int stus;
 #define SKP_FRK 6
 #define EXT_SHLL 5
 
-void execute_cmd(char **argv, char *filename);
+int execute_cmd(char **argv, char *filename);
 char *file_path(char *cmd);
 void ext_shl(char **it);
 void fre_dip(char **it);
