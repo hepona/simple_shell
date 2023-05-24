@@ -38,9 +38,6 @@ int main(int ac, char **argv)
 			token = strtok(NULL, sep);
 		}
 		argv[ac] = NULL;
-		if (str_comp(argv[0], "exit") == 0)
-		ext_shl(argv);
-		else
 		execute_cmd(argv, exe_name);
 	}
 	free(cmd_cp);
