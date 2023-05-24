@@ -12,24 +12,24 @@ int main(int ac, char **argv)
 	size_t bufsize = 0;
 	ssize_t cmdread;
 	char *token, *exe_name = argv[0], *sep = " \n";
-	int extshll = 0;
+	int c_tok = 0, extshll = 0;
 
 	while (!extshll)
 	{
 		_putstr("($) > ");
 		cmdread = getline(&cmd, &bufsize, stdin);
 		if (cmdread == -1)
-		{
 			break;
-			exit(EXIT_FAILURE);
-		}
 		cmd_cp = malloc(sizeof(char)  * cmdread);
 		if (cmd_cp == NULL)
 		{
 			perror("malloc");
 			return (-1);
 		}
-		_strcpy(cmd_cp, cmd);		token = strtok(cmd_cp, sep);
+		_strcpy(cmd_cp, cmd);
+		c_tok = tokenize(cmd, sep);
+		argv = malloc(sizeof(char *) * c_tok);
+		token = strtok(cmd_cp, sep);
 		for (ac = 0; token != NULL; ac++)
 		{
 			argv[ac] = malloc(sizeof(char) * (_strlen(token) + 1));
@@ -38,7 +38,7 @@ int main(int ac, char **argv)
 		}
 		argv[ac] = NULL;
 		if (str_comp(argv[0], "exit") == 0)
-		  ext_shl(argv);
+		ext_shl(argv);
 		if (str_comp(argv[0], "env") == 0)
 		_printenv();
 		else
