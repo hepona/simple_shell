@@ -13,7 +13,9 @@ void execute_cmd(char **argv, char *filename)
 
 	if (access(cmd_vr, X_OK) == -1)
 	{
-		perror(filename);
+		char error_msg[50];
+        int len = snprintf(error_msg, sizeof(error_msg), "/bin/sh: 1: %s: not found\n", cmd);
+        write(STDERR_FILENO, error_msg, len);
 		return;
 	}
 	pid = fork();

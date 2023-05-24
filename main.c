@@ -16,7 +16,8 @@ int main(int ac, char **argv)
 
 	while (!extshll)
 	{
-		_putstr("($) > ");
+		if (isatty(STDIN_FILENO))
+			write(STDOUT_FILENO, "($) > ", 6);
 		cmdread = getline(&cmd, &bufsize, stdin);
 		if (cmdread == -1)
 			break;
