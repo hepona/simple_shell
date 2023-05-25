@@ -12,9 +12,10 @@ int execute_cmd(char **argv, char *filename)
 	char *cmd_vr = file_path(cmd);
 	int pid;
 
-	if (access(cmd_vr, X_OK) == -1)
+	if (cmd_vr == NULL)
 	{
 		_isatty(cmd, filename);
+		super_free(&cmd_vr);
 		return (0);
 	}
 	pid = fork();
@@ -31,7 +32,6 @@ int execute_cmd(char **argv, char *filename)
 		{
 				if (execve(cmd_vr, argv, NULL) == -1)
 				perror(filename);
-				free(cmd_vr);
 				exit(EXIT_FAILURE);
 		}
 	}
@@ -45,5 +45,6 @@ int execute_cmd(char **argv, char *filename)
 		wait(NULL);
 		kill(pid, SIGKILL);
 	}
+	  super_free(&cmd_vr);
 	return (1);
 }

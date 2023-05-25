@@ -8,45 +8,37 @@
 
 char *file_path(char *cmd)
 {
-char *path, *path_cp, *tok, *dir, *tmp;
-struct stat buf;
-path = _getenv("PATH");
-if (path == NULL)
-return (NULL);
-path_cp = _strdup(path);
-tok = strtok(path_cp, ":");
-while (tok != NULL)
-{
-dir = malloc(_strlen(cmd) + _strlen(tok) + 2);
-_strcpy(dir, tok);
-tmp = str_concat(dir, "/");
-free(dir);
-dir = tmp;
-tmp = str_concat(dir, cmd);
-free(dir);
-dir = tmp;
-tmp = str_concat(dir, "\0");
-free(dir);
-dir = tmp;
-if (stat(dir, &buf) == 0)
-{
-free(path_cp);
-return (dir);
+	char *path = _getenv("PATH"), *dir_cmd, *full_path;
+	char *path_cp = _strdup(path);
+	char *dir = strtok(path_cp, ":");
+	struct stat buf;
+
+	if (path == NULL)
+		return (NULL);
+	while (dir != NULL)
+	{
+		dir_cmd = str_concat(dir, "/");
+		full_path = str_concat(dir_cmd, cmd);
+		free(dir_cmd);
+
+		if (stat(full_path, &buf) == 0)
+		{
+			free(path_cp);
+			return (full_path);
+		}
+
+		free(full_path);
+		dir = strtok(NULL, ":");
+	}
+
+	free(path_cp);
+
+	if (check_fll_path(cmd))
+		return (_strdup(cmd));
+
+	return (NULL);
 }
-else
-{
-free(dir);
-tok = strtok(NULL, ":");
-}
-}
-if (stat(cmd, &buf) == 0)
-{
-free(path_cp);
-return (cmd);
-}
-free(path_cp);
-return (cmd);
-}
+
 /**
  * check_fll_path -> chck path
  * @cmd: command entered by user

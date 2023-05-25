@@ -14,7 +14,7 @@ int _isatty(char *cmd, char *filename)
 	if (!isatty(STDIN_FILENO))
 	{
 		len = snprintf(error_msg, sizeof(error_msg),
-		 "/bin/%s: 1: %s: not found\n", cmd, filename);
+		 "%s: 1: %s: not found\n", filename, cmd);
 		write(STDERR_FILENO, error_msg, len);
 	}
 	else

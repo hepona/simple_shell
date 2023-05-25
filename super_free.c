@@ -4,11 +4,11 @@
  * super_free -> free varibale only if =/= null
  * @var: variable
  */
-void super_free(char *var)
+void super_free(char **var)
 {
-if (var != NULL)
+if (*var != NULL)
 {
-free(var);
-var = NULL;
+free(*var);
+*var = NULL;
 }
 }
