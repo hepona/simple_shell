@@ -10,7 +10,8 @@ int tokenize(char *str, char *delimiter)
 {
 int c_token = 0;
 char *token;
-
+if (str == NULL)
+return (0);
 token = strtok(str, delimiter);
 while (token != NULL)
 {

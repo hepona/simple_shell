@@ -21,7 +21,7 @@ int main(int ac, char **argv)
 		cmdread = getline(&cmd, &bufsize, stdin);
 		if (cmdread == -1)
 			break;
-		cmd_cp = malloc(sizeof(char)  * cmdread);
+		cmd_cp = malloc(sizeof(char)  * cmdread + 1);
 		if (cmd_cp == NULL)
 		{
 			perror("malloc");
@@ -42,8 +42,8 @@ int main(int ac, char **argv)
 		ext_shl(argv);
 		extshll = execute_cmd(argv, exe_name);
 		fre_dip(argv);
+		free(cmd_cp);
 	}
-	free(cmd_cp);
 	free(cmd);
 	return (0);
 }
