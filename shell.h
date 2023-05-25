@@ -43,6 +43,7 @@ int _atoi(char *s);
 int _putchar(char c);
 int tokenize(char *str, char *delimiter);
 char *_strdup(char *str);
+void super_free(char *var);
 /* Array_helpers functions */
 int lst_idx(char **lst, char *val);
 int _isatty(char *cmd, char *filename);
