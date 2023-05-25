@@ -42,7 +42,6 @@ int main(int ac, char **argv)
 		ext_shl(argv);
 		extshll = execute_cmd(argv, exe_name);
 		fre_dip(argv);
-		free(argv);
 	}
 	free(cmd_cp);
 	free(cmd);
