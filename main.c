@@ -38,9 +38,7 @@ int main(int ac, char **argv)
 			token = strtok(NULL, sep);
 		}
 		argv[ac] = NULL;
-		if (str_comp(argv[0], "exit") == 0)
-		ext_shl(argv);
-		extshll = execute_cmd(argv, exe_name);
+		execute_cmd(argv, exe_name);
 		fre_dip(argv);
 		free(cmd_cp);
 	}
