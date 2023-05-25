@@ -41,6 +41,7 @@ int main(int ac, char **argv)
 		if (str_comp(argv[0], "exit") == 0)
 		ext_shl(argv);
 		extshll = execute_cmd(argv, exe_name);
+		fre_dip(argv);
 		free(argv);
 	}
 	free(cmd_cp);
