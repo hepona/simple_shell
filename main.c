@@ -41,7 +41,7 @@ int main(int ac, char **argv)
 		}
 		argv[ac] = NULL;
 		extshll = exit_prog(cmd_cp, argv);
-		if (!extshll)
+		if (extshll)
 		execute_cmd(argv, exe_name);
 	fre_dip(argv);
 	free(cmd_cp);
@@ -57,6 +57,7 @@ int main(int ac, char **argv)
 */
 int exit_prog(char *cmd_cp, char **av)
 {
+(void)av;
 	if (str_comp(cmd_cp, "exit") == 0)
 	{
 		return (0);
