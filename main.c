@@ -21,6 +21,8 @@ int main(int ac, char **argv)
 		cmdread = getline(&cmd, &bufsize, stdin);
 		if (cmdread == -1)
 			break;
+		if (cmdread <= 1)
+			continue;
 		cmd_cp = malloc(sizeof(char)  * cmdread + 1);
 		if (cmd_cp == NULL)
 		{
@@ -38,14 +40,30 @@ int main(int ac, char **argv)
 			token = strtok(NULL, sep);
 		}
 		argv[ac] = NULL;
+		extshll = exit_prog(cmd_cp, argv);
 		execute_cmd(argv, exe_name);
-		fre_dip(argv);
-		free(cmd_cp);
+	fre_dip(argv);
+	free(cmd_cp);
 	}
 	free(cmd);
 	return (0);
 }
-
+/**
+ * exit_prog -> exit the prog
+ * @cmd_cp: copy of cmd
+ * @av: argv
+ * Return: 0 if the program quit successfully, 1 if not
+*/
+int exit_prog(char *cmd_cp, char **av)
+{
+	if (str_comp(cmd_cp, "exit") == 0)
+	{
+		fre_dip(av);
+		free(cmd_cp);
+		return (0);
+	}
+	return (1);
+}
 /**
  * ext_shl - Chck
  * @it: input

@@ -13,8 +13,8 @@ char *file_path(char *cmd)
 	char *dir = strtok(path_cp, ":");
 	struct stat buf;
 
-	if (path == NULL)
-		return (NULL);
+	if (path == NULL || str_comp(path, "\0") == 0)
+		return (_strdup(cmd));
 	while (dir != NULL)
 	{
 		dir_cmd = str_concat(dir, "/");

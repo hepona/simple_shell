@@ -31,6 +31,7 @@ char *_getenv(const char *name);
 int _printenv(void);
 int check_fll_path(const char *cmd);
 /* String_helpers functions */
+int exit_prog(char *cmd_cp, char **av);
 void free_argv(char **av);
 int str_comp(char *st1, char *st2);
 int _putstr(char *c);
