@@ -24,6 +24,7 @@ int execute_cmd(char **argv, char *filename)
 		if (cmd == NULL)
 		{
 			_putstr("");
+			super_free(&cmd_vr);
 			return (0);
 		}
 		if (str_comp(argv[0], "env") == 0)
